@@ -1,31 +1,29 @@
 from typing import Callable
 
-from generic_exercise_types import Exercises, Exercise
+from exercises.types import Exercises, Exercise
 from utilities import clean
 
 
-class CreateLoop:
-    _max_runs = 1000
-    _number_or_exercises = 50
-
+class Generating:
     _runs = 0
-    _results = 0
     _questions = set()
 
 
-    def __init__(self):
-        pass
+    def __init__(self, generator: Callable, number_of_exercises: int = 2, max_runs: int = 10):
+        self.generator = generator
+        self.number_of_exercises = number_of_exercises
+        self.max_runs = max_runs
 
-    def run(self, generator: Callable):
+    def execute(self):
         exercises: Exercises = []
-        while self._runs < self._max_runs and self._results < self._number_or_exercises:
+        while self._runs < self.max_runs and len(exercises) < self.number_of_exercises:
             self._runs += 1
-            _question, _answer = generator()
+            _question, _answer = self.generator()
             if clean(_question) in self._questions:
                 continue
             self._questions.add(clean(_question))
             exercises.append(
                 Exercise(question = clean(_question), answer = clean(_answer))
             )
-            self._results += 1
+        print(f"Generated {len(exercises)} exercises in {self._runs} runs.")
         return exercises

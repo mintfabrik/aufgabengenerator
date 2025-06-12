@@ -1,5 +1,10 @@
-from generic_exercise_types import Exercises
+from re import match
+
+from exercises.types import Exercises
 from uuid import uuid4
+
+from operations.plotting import svg_rgx
+
 
 class Rendering:
     
@@ -13,6 +18,7 @@ class Rendering:
     def execute(self):
         with open('index.html', 'w') as f:
             f.write(self.render_page())
+            print('Created HTML file "index.html".')
 
     @staticmethod
     def render_latex(latex: str) -> str:
@@ -40,7 +46,14 @@ class Rendering:
     </script>
     """
         return html
-        
+
+    @staticmethod
+    def render_element(element: str) -> str:
+        if match(svg_rgx, element):
+            return f"<div>{element}</div>"
+        else:
+            return Rendering.render_latex(element)
+
         
     def render_page(self) -> str:
         """
@@ -104,10 +117,11 @@ class Rendering:
             margin-bottom: 30px;
         }}
         .exercise-container {{
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
             margin-top: 20px;
+            gap: 20px;
+            max-width: 1068px;
         }}
         .exercise {{
             border: 1px solid #e0e0e0;
@@ -137,8 +151,8 @@ class Rendering:
             <div class="exercise" id="exercise-{i + 1}">
                 <h3>Aufgabe {i + 1}</h3>
                 <div class="exercise-content">
-                    {Rendering.render_latex(exercise.question)}
-                    {Rendering.render_latex(exercise.answer)}
+                    {Rendering.render_element(exercise.question)}
+                    {Rendering.render_element(exercise.answer)}
                 </div>
             </div>"""
         return exercises

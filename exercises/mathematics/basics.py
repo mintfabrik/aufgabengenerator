@@ -2,7 +2,6 @@ from random import choice
 
 from utilities import int_range
 
-
 def punkt_strich():
     p = choice(int_range(2,11))
     q = choice(int_range(2,11))

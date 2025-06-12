@@ -1,11 +1,10 @@
 from os import unlink
 from random import randint
-from re import search, DOTALL
+from re import compile, search, DOTALL
 
-from spb import PB, MB, plot, plot_implicit, plot_parametric, plot_parametric_region, plot_contour, plot_polar, plot_geometry, plot_list, plot_piecewise
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator
-
+from spb import PB
 
 svg_rgx = compile(r'<svg(.*)</svg>', DOTALL)
 
