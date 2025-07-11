@@ -2,21 +2,57 @@
 
 ## Installation
 
-### Schritt 1: Anaconda installieren
+### Schritt 1: Python installieren
 
-1. Lade die passende Variante von [Anaconda](https://www.anaconda.com/download) für deinen Rechner herunter und installiere sie.
-2. Starte nach der Installation die **Anaconda Prompt** (Windows) oder das **Terminal** (macOS/Linux).
+1. Lade die neueste Python-Version von der [offiziellen Python-Website](https://www.python.org/downloads/) herunter:
 
-### Schritt 2: Python-Umgebung für das Projekt erstellen
+![Python Download Page](https://github.com/user-attachments/assets/2b54e78b-56d8-464e-90a5-01851447d1c3)
 
-Erstelle eine separate Python-Umgebung für dieses Projekt:
+**Betriebssystem-spezifische Installationshinweise:**
+
+**Windows:**
+- Lade die neueste Python-Version für Windows herunter
+- **Wichtig:** Aktiviere beim Installer die Option "Add Python to PATH"
+- Führe die Installation als Administrator aus
+
+**macOS:**
+- Lade die neueste Python-Version für macOS herunter
+- Installiere die .pkg-Datei
+- Alternativ: Verwende Homebrew: `brew install python`
+
+**Linux (Ubuntu/Debian):**
+```bash
+# Aktualisiere die Paketliste
+sudo apt update
+
+# Installiere Python 3.12 und pip
+sudo apt install python3.12 python3.12-venv python3.12-pip
+
+# Setze Python 3.12 als Standard (optional)
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
+```
+
+2. Überprüfe die Installation:
+```bash
+python --version
+# oder auf manchen Systemen:
+python3 --version
+```
+
+### Schritt 2: Virtuelle Python-Umgebung für das Projekt erstellen
+
+Erstelle eine separate virtuelle Umgebung für dieses Projekt:
 
 ```bash
-# Neue Umgebung mit Python 3.12 erstellen
-conda create -n aufgabengenerator python=3.12
+# Neue virtuelle Umgebung erstellen
+python -m venv aufgabengenerator-env
 
 # Umgebung aktivieren
-conda activate aufgabengenerator
+# Windows:
+aufgabengenerator-env\Scripts\activate
+
+# macOS/Linux:
+source aufgabengenerator-env/bin/activate
 ```
 
 ### Schritt 3: Projekt herunterladen
@@ -36,8 +72,11 @@ cd aufgabengenerator
 Installiere die benötigten Python-Pakete aus der `requirements.txt`-Datei:
 
 ```bash
-# Stelle sicher, dass die aufgabengenerator-Umgebung aktiv ist
-conda activate aufgabengenerator
+# Stelle sicher, dass die virtuelle Umgebung aktiv ist
+# Windows:
+aufgabengenerator-env\Scripts\activate
+# macOS/Linux:
+source aufgabengenerator-env/bin/activate
 
 # Installiere die Abhängigkeiten
 pip install -r requirements.txt
@@ -66,17 +105,20 @@ Die folgenden Pakete werden installiert:
 4. **Python-Interpreter auswählen**:
    - Drücke `Strg+Shift+P` (Windows/Linux) oder `Cmd+Shift+P` (macOS)
    - Gebe "Python: Select Interpreter" ein
-   - Wähle den Interpreter aus der `aufgabengenerator`-Umgebung:
-     - Windows: `~/anaconda3/envs/aufgabengenerator/python.exe`
-     - macOS/Linux: `~/anaconda3/envs/aufgabengenerator/bin/python`
+   - Wähle den Interpreter aus der `aufgabengenerator-env`-Umgebung:
+     - Windows: `aufgabengenerator-env\Scripts\python.exe`
+     - macOS/Linux: `aufgabengenerator-env/bin/python`
 
 ### Schritt 6: Installation testen
 
 Teste, ob alles korrekt installiert ist:
 
 ```bash
-# Stelle sicher, dass die aufgabengenerator-Umgebung aktiv ist
-conda activate aufgabengenerator
+# Stelle sicher, dass die virtuelle Umgebung aktiv ist
+# Windows:
+aufgabengenerator-env\Scripts\activate
+# macOS/Linux:
+source aufgabengenerator-env/bin/activate
 
 # Führe das Hauptprogramm aus
 python main.py
@@ -98,19 +140,26 @@ Das Projekt ist bereits mit einer VS Code Debug-Konfiguration eingerichtet:
 
 ### Troubleshooting
 
-**Problem: `conda` Befehl nicht gefunden**
-- Starte die Anaconda Prompt neu oder füge Anaconda zu deinem PATH hinzu
+**Problem: `python` Befehl nicht gefunden**
+- Stelle sicher, dass Python korrekt installiert und zu deinem PATH hinzugefügt wurde
+- Windows: Verwende möglicherweise `py` anstatt `python`
+- Linux/macOS: Verwende möglicherweise `python3` anstatt `python`
+
+**Problem: Virtuelle Umgebung kann nicht aktiviert werden**
+- Windows: Überprüfe, ob PowerShell-Ausführungsrichtlinien korrekt gesetzt sind: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+- Stelle sicher, dass du dich im richtigen Verzeichnis befindest
 
 **Problem: Falsche Python-Version**
-- Überprüfe mit `python --version`, ob Python 3.12 verwendet wird
-- Aktiviere die richtige Umgebung mit `conda activate aufgabengenerator`
+- Überprüfe mit `python --version`, ob Python 3.12+ verwendet wird
+- Aktiviere die virtuelle Umgebung korrekt
 
 **Problem: Module nicht gefunden**
 - Stelle sicher, dass die `requirements.txt` installiert wurde: `pip install -r requirements.txt`
+- Überprüfe, ob die virtuelle Umgebung aktiviert ist
 - Überprüfe, ob die richtige Python-Umgebung in VS Code ausgewählt ist
 
-**Problem: VS Code erkennt die Anaconda-Umgebung nicht**
-- Starte VS Code aus der Anaconda Prompt: `code .`
+**Problem: VS Code erkennt die virtuelle Umgebung nicht**
+- Starte VS Code aus dem Terminal mit aktivierter Umgebung: `code .`
 - Oder wähle manuell den Python-Interpreter über die Command Palette
 
 ## Eine Aufgabe erstellen
