@@ -39,55 +39,7 @@ python --version
 python3 --version
 ```
 
-### Schritt 2: Virtuelle Python-Umgebung für das Projekt erstellen
-
-Erstelle eine separate virtuelle Umgebung für dieses Projekt:
-
-```bash
-# Neue virtuelle Umgebung erstellen
-python -m venv aufgabengenerator-env
-
-# Umgebung aktivieren
-# Windows:
-aufgabengenerator-env\Scripts\activate
-
-# macOS/Linux:
-source aufgabengenerator-env/bin/activate
-```
-
-### Schritt 3: Projekt herunterladen
-
-Lade das Projekt herunter oder klone es:
-
-```bash
-# Mit Git (falls installiert)
-git clone https://github.com/mintfabrik/aufgabengenerator.git
-cd aufgabengenerator
-
-# Oder lade es als ZIP herunter und entpacke es
-```
-
-### Schritt 4: Abhängigkeiten installieren
-
-Installiere die benötigten Python-Pakete aus der `requirements.txt`-Datei:
-
-```bash
-# Stelle sicher, dass die virtuelle Umgebung aktiv ist
-# Windows:
-aufgabengenerator-env\Scripts\activate
-# macOS/Linux:
-source aufgabengenerator-env/bin/activate
-
-# Installiere die Abhängigkeiten
-pip install -r requirements.txt
-```
-
-Die folgenden Pakete werden installiert:
-- **sympy**: Für symbolische Mathematik
-- **matplotlib**: Für das Erstellen von Diagrammen
-- **sympy-plot-backends**: Für erweiterte Plotting-Funktionen
-
-### Schritt 5: VS Code einrichten
+### Schritt 2: VS Code einrichten
 
 1. **VS Code herunterladen und installieren:**
 
@@ -105,39 +57,79 @@ Die folgenden Pakete werden installiert:
    - Installiere die offizielle Python-Erweiterung von Microsoft
    - Starte VS Code neu, wenn erforderlich
 
-3. **Projektverzeichnis in VS Code öffnen:**
-   - Navigiere im Datei-Explorer zum `aufgabengenerator`-Ordner
-   - Klicke mit der rechten Maustaste und wähle "Mit Code öffnen"
-   - Oder öffne VS Code und verwende `Datei > Ordner öffnen...`
+3. **Python-Interpreter als Standard auswählen:**
+   - Drücke `Strg+Shift+P` (Windows/Linux) oder `Cmd+Shift+P` (macOS)
+   - Gebe "Python: Select Interpreter" ein und wähle diesen Befehl
+   - Wähle die installierte Python-Version aus (die du in Schritt 1 installiert hast):
+     - Windows: Normalerweise unter `C:\Users\[Username]\AppData\Local\Programs\Python\Python3xx\python.exe` oder `C:\Python3xx\python.exe`
+     - macOS: Normalerweise unter `/usr/local/bin/python3` oder `/opt/homebrew/bin/python3` (bei Homebrew)
+     - Linux: Normalerweise unter `/usr/bin/python3`
+   - VS Code zeigt den ausgewählten Interpreter unten links in der Statusleiste an
 
 4. **VS Code Terminal öffnen:**
    - Drücke `Strg+Shift+ö` (Windows/Linux) oder `Cmd+Shift+ö` (macOS)
    - Oder gehe zu `Terminal > Neues Terminal` im Menü
    - Das Terminal sollte sich am unteren Bildschirmrand öffnen
+   - **Verwende ab sofort das VS Code Terminal für alle weiteren Kommandozeilen-Befehle**
 
-5. **Virtuelle Umgebung im VS Code Terminal aktivieren:**
-   
-   Verwende ab sofort das VS Code Terminal für alle Kommandozeilen-Befehle:
-   
-   **Windows:**
-   ```bash
-   aufgabengenerator-env\Scripts\activate
-   ```
-   
-   **macOS/Linux:**
-   ```bash
-   source aufgabengenerator-env/bin/activate
-   ```
-   
-   Du solltest `(aufgabengenerator-env)` vor deiner Eingabeaufforderung sehen.
+### Schritt 3: Virtuelle Python-Umgebung für das Projekt erstellen
 
-6. **Python-Interpreter auswählen:**
-   - Drücke `Strg+Shift+P` (Windows/Linux) oder `Cmd+Shift+P` (macOS)
-   - Gebe "Python: Select Interpreter" ein und wähle diesen Befehl
-   - Wähle den Interpreter aus der `aufgabengenerator-env`-Umgebung:
-     - Windows: `aufgabengenerator-env\Scripts\python.exe`
-     - macOS/Linux: `aufgabengenerator-env/bin/python`
-   - VS Code zeigt den ausgewählten Interpreter unten links in der Statusleiste an
+Erstelle eine separate virtuelle Umgebung für dieses Projekt im VS Code Terminal:
+
+```bash
+# Neue virtuelle Umgebung erstellen
+python -m venv aufgabengenerator-env
+
+# Umgebung aktivieren
+# Windows:
+aufgabengenerator-env\Scripts\activate
+
+# macOS/Linux:
+source aufgabengenerator-env/bin/activate
+```
+
+Du solltest `(aufgabengenerator-env)` vor deiner Eingabeaufforderung im VS Code Terminal sehen.
+
+**Python-Interpreter für die virtuelle Umgebung auswählen:**
+- Drücke `Strg+Shift+P` (Windows/Linux) oder `Cmd+Shift+P` (macOS)
+- Gebe "Python: Select Interpreter" ein und wähle diesen Befehl
+- Wähle nun den Interpreter aus der `aufgabengenerator-env`-Umgebung:
+  - Windows: `aufgabengenerator-env\Scripts\python.exe`
+  - macOS/Linux: `aufgabengenerator-env/bin/python`
+
+### Schritt 4: Projekt herunterladen
+
+Lade das Projekt herunter oder klone es im VS Code Terminal:
+
+```bash
+# Mit Git (falls installiert)
+git clone https://github.com/mintfabrik/aufgabengenerator.git
+cd aufgabengenerator
+
+# Oder lade es als ZIP herunter und entpacke es
+```
+
+**Projektverzeichnis in VS Code öffnen:**
+- Navigiere im Datei-Explorer zum `aufgabengenerator`-Ordner
+- Klicke mit der rechten Maustaste und wähle "Mit Code öffnen"
+- Oder öffne VS Code und verwende `Datei > Ordner öffnen...`
+
+### Schritt 5: Abhängigkeiten installieren
+
+Installiere die benötigten Python-Pakete aus der `requirements.txt`-Datei im VS Code Terminal:
+
+```bash
+# Stelle sicher, dass die virtuelle Umgebung aktiv ist
+# Du solltest (aufgabengenerator-env) in der Eingabeaufforderung sehen
+
+# Installiere die Abhängigkeiten
+pip install -r requirements.txt
+```
+
+Die folgenden Pakete werden installiert:
+- **sympy**: Für symbolische Mathematik
+- **matplotlib**: Für das Erstellen von Diagrammen
+- **sympy-plot-backends**: Für erweiterte Plotting-Funktionen
 
 ### Schritt 6: Installation testen
 
