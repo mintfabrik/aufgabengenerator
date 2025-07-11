@@ -89,36 +89,63 @@ Die folgenden Pakete werden installiert:
 
 ### Schritt 5: VS Code einrichten
 
-1. Lade [VS Code](https://code.visualstudio.com/download) herunter und installiere es.
+1. **VS Code herunterladen und installieren:**
 
-2. Installiere die **Python-Erweiterung** für VS Code:
+![Download Visual Studio Code](https://github.com/user-attachments/assets/1d435685-78ee-4226-a6c7-5ba115b84ccc)
+
+   - Besuche [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
+   - Wähle dein Betriebssystem (Windows, macOS oder Linux)
+   - Lade den entsprechenden Installer herunter
+   - Führe die Installation durch
+
+2. **Python-Erweiterung installieren:**
    - Öffne VS Code
-   - Gehe zu Erweiterungen (Strg+Shift+X)
-   - Suche nach "Python" und installiere die offizielle Python-Erweiterung von Microsoft
+   - Klicke auf das Erweiterungen-Symbol in der Seitenleiste (oder drücke `Strg+Shift+X`)
+   - Suche nach "Python"
+   - Installiere die offizielle Python-Erweiterung von Microsoft
+   - Starte VS Code neu, wenn erforderlich
 
-3. Öffne das Projektverzeichnis in VS Code:
+3. **Projektverzeichnis in VS Code öffnen:**
+   - Navigiere im Datei-Explorer zum `aufgabengenerator`-Ordner
+   - Klicke mit der rechten Maustaste und wähle "Mit Code öffnen"
+   - Oder öffne VS Code und verwende `Datei > Ordner öffnen...`
+
+4. **VS Code Terminal öffnen:**
+   - Drücke `Strg+Shift+ö` (Windows/Linux) oder `Cmd+Shift+ö` (macOS)
+   - Oder gehe zu `Terminal > Neues Terminal` im Menü
+   - Das Terminal sollte sich am unteren Bildschirmrand öffnen
+
+5. **Virtuelle Umgebung im VS Code Terminal aktivieren:**
+   
+   Verwende ab sofort das VS Code Terminal für alle Kommandozeilen-Befehle:
+   
+   **Windows:**
    ```bash
-   code .
+   aufgabengenerator-env\Scripts\activate
    ```
-   (Führe diesen Befehl im Projektverzeichnis aus)
+   
+   **macOS/Linux:**
+   ```bash
+   source aufgabengenerator-env/bin/activate
+   ```
+   
+   Du solltest `(aufgabengenerator-env)` vor deiner Eingabeaufforderung sehen.
 
-4. **Python-Interpreter auswählen**:
+6. **Python-Interpreter auswählen:**
    - Drücke `Strg+Shift+P` (Windows/Linux) oder `Cmd+Shift+P` (macOS)
-   - Gebe "Python: Select Interpreter" ein
+   - Gebe "Python: Select Interpreter" ein und wähle diesen Befehl
    - Wähle den Interpreter aus der `aufgabengenerator-env`-Umgebung:
      - Windows: `aufgabengenerator-env\Scripts\python.exe`
      - macOS/Linux: `aufgabengenerator-env/bin/python`
+   - VS Code zeigt den ausgewählten Interpreter unten links in der Statusleiste an
 
 ### Schritt 6: Installation testen
 
-Teste, ob alles korrekt installiert ist:
+Teste im VS Code Terminal, ob alles korrekt installiert ist:
 
 ```bash
-# Stelle sicher, dass die virtuelle Umgebung aktiv ist
-# Windows:
-aufgabengenerator-env\Scripts\activate
-# macOS/Linux:
-source aufgabengenerator-env/bin/activate
+# Stelle sicher, dass die virtuelle Umgebung aktiv ist (sollte bereits aktiv sein)
+# Du solltest (aufgabengenerator-env) in der Eingabeaufforderung sehen
 
 # Führe das Hauptprogramm aus
 python main.py
@@ -159,8 +186,9 @@ Das Projekt ist bereits mit einer VS Code Debug-Konfiguration eingerichtet:
 - Überprüfe, ob die richtige Python-Umgebung in VS Code ausgewählt ist
 
 **Problem: VS Code erkennt die virtuelle Umgebung nicht**
-- Starte VS Code aus dem Terminal mit aktivierter Umgebung: `code .`
-- Oder wähle manuell den Python-Interpreter über die Command Palette
+- Stelle sicher, dass du den Python-Interpreter korrekt ausgewählt hast (siehe Schritt 5.6)
+- Öffne ein neues VS Code Terminal (`Strg+Shift+ö`) und aktiviere die Umgebung manuell
+- Oder wähle manuell den Python-Interpreter über die Command Palette (`Strg+Shift+P` → "Python: Select Interpreter")
 
 ## Eine Aufgabe erstellen
 
