@@ -2,26 +2,104 @@
 
 ## Installation
 
-### Schritt 1: Anaconda installieren
+### Schritt 1: Python installieren
 
-1. Lade die passende Variante von [Anaconda](https://www.anaconda.com/download) für deinen Rechner herunter und installiere sie.
-2. Starte nach der Installation die **Anaconda Prompt** (Windows) oder das **Terminal** (macOS/Linux).
+1. Lade die neueste Python-Version von der [offiziellen Python-Website](https://www.python.org/downloads/) herunter:
 
-### Schritt 2: Python-Umgebung für das Projekt erstellen
+![Python Download Page](https://github.com/user-attachments/assets/2b54e78b-56d8-464e-90a5-01851447d1c3)
 
-Erstelle eine separate Python-Umgebung für dieses Projekt:
+**Betriebssystem-spezifische Installationshinweise:**
 
+**Windows:**
+- Lade die neueste Python-Version für Windows herunter
+- **Wichtig:** Aktiviere beim Installer die Option "Add Python to PATH"
+- Führe die Installation als Administrator aus
+
+**macOS:**
+- Lade die neueste Python-Version für macOS herunter
+- Installiere die .pkg-Datei
+- Alternativ: Verwende Homebrew: `brew install python`
+
+**Linux (Ubuntu/Debian):**
 ```bash
-# Neue Umgebung mit Python 3.12 erstellen
-conda create -n aufgabengenerator python=3.12
+# Aktualisiere die Paketliste
+sudo apt update
 
-# Umgebung aktivieren
-conda activate aufgabengenerator
+# Installiere Python 3.12 und pip
+sudo apt install python3.12 python3.12-venv python3.12-pip
+
+# Setze Python 3.12 als Standard (optional)
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
 ```
 
-### Schritt 3: Projekt herunterladen
+2. Überprüfe die Installation:
+```bash
+python --version
+# oder auf manchen Systemen:
+python3 --version
+```
 
-Lade das Projekt herunter oder klone es:
+### Schritt 2: VS Code einrichten
+
+1. **VS Code herunterladen und installieren:**
+
+![Download Visual Studio Code](https://github.com/user-attachments/assets/1d435685-78ee-4226-a6c7-5ba115b84ccc)
+
+   - Besuche [https://code.visualstudio.com/download](https://code.visualstudio.com/download)
+   - Wähle dein Betriebssystem (Windows, macOS oder Linux)
+   - Lade den entsprechenden Installer herunter
+   - Führe die Installation durch
+
+2. **Python-Erweiterung installieren:**
+   - Öffne VS Code
+   - Klicke auf das Erweiterungen-Symbol in der Seitenleiste (oder drücke `Strg+Shift+X`)
+   - Suche nach "Python"
+   - Installiere die offizielle Python-Erweiterung von Microsoft
+   - Starte VS Code neu, wenn erforderlich
+
+3. **Python-Interpreter als Standard auswählen:**
+   - Drücke `Strg+Shift+P` (Windows/Linux) oder `Cmd+Shift+P` (macOS)
+   - Gebe "Python: Select Interpreter" ein und wähle diesen Befehl
+   - Wähle die installierte Python-Version aus (die du in Schritt 1 installiert hast):
+     - Windows: Normalerweise unter `C:\Users\[Username]\AppData\Local\Programs\Python\Python3xx\python.exe` oder `C:\Python3xx\python.exe`
+     - macOS: Normalerweise unter `/usr/local/bin/python3` oder `/opt/homebrew/bin/python3` (bei Homebrew)
+     - Linux: Normalerweise unter `/usr/bin/python3`
+   - VS Code zeigt den ausgewählten Interpreter unten links in der Statusleiste an
+
+4. **VS Code Terminal öffnen:**
+   - Drücke `Strg+Shift+ö` (Windows/Linux) oder `Cmd+Shift+ö` (macOS)
+   - Oder gehe zu `Terminal > Neues Terminal` im Menü
+   - Das Terminal sollte sich am unteren Bildschirmrand öffnen
+   - **Verwende ab sofort das VS Code Terminal für alle weiteren Kommandozeilen-Befehle**
+
+### Schritt 3: Virtuelle Python-Umgebung für das Projekt erstellen
+
+Erstelle eine separate virtuelle Umgebung für dieses Projekt im VS Code Terminal:
+
+```bash
+# Neue virtuelle Umgebung erstellen
+python -m venv aufgabengenerator-env
+
+# Umgebung aktivieren
+# Windows:
+aufgabengenerator-env\Scripts\activate
+
+# macOS/Linux:
+source aufgabengenerator-env/bin/activate
+```
+
+Du solltest `(aufgabengenerator-env)` vor deiner Eingabeaufforderung im VS Code Terminal sehen.
+
+**Python-Interpreter für die virtuelle Umgebung auswählen:**
+- Drücke `Strg+Shift+P` (Windows/Linux) oder `Cmd+Shift+P` (macOS)
+- Gebe "Python: Select Interpreter" ein und wähle diesen Befehl
+- Wähle nun den Interpreter aus der `aufgabengenerator-env`-Umgebung:
+  - Windows: `aufgabengenerator-env\Scripts\python.exe`
+  - macOS/Linux: `aufgabengenerator-env/bin/python`
+
+### Schritt 4: Projekt herunterladen
+
+Lade das Projekt herunter oder klone es im VS Code Terminal:
 
 ```bash
 # Mit Git (falls installiert)
@@ -31,13 +109,18 @@ cd aufgabengenerator
 # Oder lade es als ZIP herunter und entpacke es
 ```
 
-### Schritt 4: Abhängigkeiten installieren
+**Projektverzeichnis in VS Code öffnen:**
+- Navigiere im Datei-Explorer zum `aufgabengenerator`-Ordner
+- Klicke mit der rechten Maustaste und wähle "Mit Code öffnen"
+- Oder öffne VS Code und verwende `Datei > Ordner öffnen...`
 
-Installiere die benötigten Python-Pakete aus der `requirements.txt`-Datei:
+### Schritt 5: Abhängigkeiten installieren
+
+Installiere die benötigten Python-Pakete aus der `requirements.txt`-Datei im VS Code Terminal:
 
 ```bash
-# Stelle sicher, dass die aufgabengenerator-Umgebung aktiv ist
-conda activate aufgabengenerator
+# Stelle sicher, dass die virtuelle Umgebung aktiv ist
+# Du solltest (aufgabengenerator-env) in der Eingabeaufforderung sehen
 
 # Installiere die Abhängigkeiten
 pip install -r requirements.txt
@@ -48,35 +131,13 @@ Die folgenden Pakete werden installiert:
 - **matplotlib**: Für das Erstellen von Diagrammen
 - **sympy-plot-backends**: Für erweiterte Plotting-Funktionen
 
-### Schritt 5: VS Code einrichten
-
-1. Lade [VS Code](https://code.visualstudio.com/download) herunter und installiere es.
-
-2. Installiere die **Python-Erweiterung** für VS Code:
-   - Öffne VS Code
-   - Gehe zu Erweiterungen (Strg+Shift+X)
-   - Suche nach "Python" und installiere die offizielle Python-Erweiterung von Microsoft
-
-3. Öffne das Projektverzeichnis in VS Code:
-   ```bash
-   code .
-   ```
-   (Führe diesen Befehl im Projektverzeichnis aus)
-
-4. **Python-Interpreter auswählen**:
-   - Drücke `Strg+Shift+P` (Windows/Linux) oder `Cmd+Shift+P` (macOS)
-   - Gebe "Python: Select Interpreter" ein
-   - Wähle den Interpreter aus der `aufgabengenerator`-Umgebung:
-     - Windows: `~/anaconda3/envs/aufgabengenerator/python.exe`
-     - macOS/Linux: `~/anaconda3/envs/aufgabengenerator/bin/python`
-
 ### Schritt 6: Installation testen
 
-Teste, ob alles korrekt installiert ist:
+Teste im VS Code Terminal, ob alles korrekt installiert ist:
 
 ```bash
-# Stelle sicher, dass die aufgabengenerator-Umgebung aktiv ist
-conda activate aufgabengenerator
+# Stelle sicher, dass die virtuelle Umgebung aktiv ist (sollte bereits aktiv sein)
+# Du solltest (aufgabengenerator-env) in der Eingabeaufforderung sehen
 
 # Führe das Hauptprogramm aus
 python main.py
@@ -98,20 +159,28 @@ Das Projekt ist bereits mit einer VS Code Debug-Konfiguration eingerichtet:
 
 ### Troubleshooting
 
-**Problem: `conda` Befehl nicht gefunden**
-- Starte die Anaconda Prompt neu oder füge Anaconda zu deinem PATH hinzu
+**Problem: `python` Befehl nicht gefunden**
+- Stelle sicher, dass Python korrekt installiert und zu deinem PATH hinzugefügt wurde
+- Windows: Verwende möglicherweise `py` anstatt `python`
+- Linux/macOS: Verwende möglicherweise `python3` anstatt `python`
+
+**Problem: Virtuelle Umgebung kann nicht aktiviert werden**
+- Windows: Überprüfe, ob PowerShell-Ausführungsrichtlinien korrekt gesetzt sind: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+- Stelle sicher, dass du dich im richtigen Verzeichnis befindest
 
 **Problem: Falsche Python-Version**
-- Überprüfe mit `python --version`, ob Python 3.12 verwendet wird
-- Aktiviere die richtige Umgebung mit `conda activate aufgabengenerator`
+- Überprüfe mit `python --version`, ob Python 3.12+ verwendet wird
+- Aktiviere die virtuelle Umgebung korrekt
 
 **Problem: Module nicht gefunden**
 - Stelle sicher, dass die `requirements.txt` installiert wurde: `pip install -r requirements.txt`
+- Überprüfe, ob die virtuelle Umgebung aktiviert ist
 - Überprüfe, ob die richtige Python-Umgebung in VS Code ausgewählt ist
 
-**Problem: VS Code erkennt die Anaconda-Umgebung nicht**
-- Starte VS Code aus der Anaconda Prompt: `code .`
-- Oder wähle manuell den Python-Interpreter über die Command Palette
+**Problem: VS Code erkennt die virtuelle Umgebung nicht**
+- Stelle sicher, dass du den Python-Interpreter korrekt ausgewählt hast (siehe Schritt 5.6)
+- Öffne ein neues VS Code Terminal (`Strg+Shift+ö`) und aktiviere die Umgebung manuell
+- Oder wähle manuell den Python-Interpreter über die Command Palette (`Strg+Shift+P` → "Python: Select Interpreter")
 
 ## Eine Aufgabe erstellen
 
