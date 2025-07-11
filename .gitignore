@@ -1,3 +1,6 @@
 *.iml
 .idea
 index.html
+__pycache__/
+*.py[cod]
+*$py.class
