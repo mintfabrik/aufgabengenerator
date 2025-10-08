@@ -61,10 +61,10 @@ python3 --version
    - Drücke `Strg+Shift+P` (Windows/Linux) oder `Cmd+Shift+P` (macOS)
    - Gebe "Python: Select Interpreter" ein und wähle diesen Befehl
    - Wähle die installierte Python-Version aus (die du in Schritt 1 installiert hast):
-     - Windows: Normalerweise unter `C:\Users\[Username]\AppData\Local\Programs\Python\Python3xx\python.exe` oder `C:\Python3xx\python.exe`
+     - Windows: Normalerweise unter `C:\Users\[Username]\AppData\Local\Programs\Python\Python3xx\python.exe` oder `C:\Python3xx\python.exe` oder der Pfad, den du bei der Installation angegeben hast
      - macOS: Normalerweise unter `/usr/local/bin/python3` oder `/opt/homebrew/bin/python3` (bei Homebrew)
      - Linux: Normalerweise unter `/usr/bin/python3`
-   - VS Code zeigt den ausgewählten Interpreter unten links in der Statusleiste an
+   - VS Code zeigt den ausgewählten Interpreter unten rechts in der Statusleiste an, wenn eine Python-Datei geöffnet ist
 
 4. **VS Code Terminal öffnen:**
    - Drücke `Strg+Shift+ö` (Windows/Linux) oder `Cmd+Shift+ö` (macOS)

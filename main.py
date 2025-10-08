@@ -1,4 +1,3 @@
-from exercises.mathematics.functions import plot_template
 from operations.generating import Generating
 from exercises.mathematics.basics import punkt_strich
 from operations.rendering import Rendering
